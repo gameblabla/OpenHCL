@@ -19,7 +19,7 @@ void BossMusicController::update()
 		{
 			gameSetBossRoom(true);
 			aud_StopMusic();
-			aud_PlayMusic(music[bgmBoss], true);
+			aud_PlayMusic(1, true);
 
 			if (gameHasItem(ITEM_BELL))
 				aud_PlaySound(sounds[sndBell01]);

@@ -31,7 +31,7 @@ INCLUDES	:=	../../include
 #---------------------------------------------------------------------------------
 
 CFLAGS	= -Os -Wall -D_WII $(MACHDEP) $(INCLUDE) -std=gnu++11
-CFLAGS += -D_NTSC -D_HAS_VIDEOMODE
+CFLAGS += -D_NTSC -DMUSIC
 
 CXXFLAGS	=	$(CFLAGS)
 
@@ -40,7 +40,7 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=  -lasnd -lfat -logc -lm
+LIBS	:=  -lasnd -lfat -logc -lm -lvorbisidec -logg
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing

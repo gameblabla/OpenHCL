@@ -138,7 +138,7 @@ void Hero::update()
 
 		//play music
 		if (deathTimer == 150)
-			aud_PlayMusic(music[bgmGameOver], false);
+			aud_PlayMusic(3, false);
 
 		//end game over screen early
 		if (deathTimer > 150 && (inp_ButtonPressed(BTN_START) || inp_ButtonPressed(BTN_SELECT)))

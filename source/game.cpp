@@ -120,7 +120,7 @@ static void changeScreen(int x, int y)
 	if (bossRoom)
 	{
 		aud_StopMusic();
-		aud_PlayMusic(music[bgmMusic], true);
+		aud_PlayMusic(0, true);
 		bossRoom = false;
 	}
 
@@ -309,7 +309,7 @@ void gameUpdate()
 			screenX = warpscreen % 12;
 			screenY = warpscreen / 12;
 			bossRoom = false;
-			aud_PlayMusic(music[bgmMusic], true);
+			aud_PlayMusic(0, true);
 		}
 
 		return;
@@ -392,7 +392,7 @@ void gameUpdate()
 		if ((curtainTimer -= 4) <= 0)
 		{
 			if (!bossRoom)
-				aud_PlayMusic(music[bgmMusic], true);
+				aud_PlayMusic(0, true);
 			curtainTimer = 0;
 		}
 	}
@@ -698,7 +698,7 @@ void gameSetState(GameState s)
 	{
 		if (warplevel != 0)
 		{
-			aud_PlayMusic(music[bgmStart], false);
+			aud_PlayMusic(4, false);
 			transitionTimer = 120;
 		}
 	}

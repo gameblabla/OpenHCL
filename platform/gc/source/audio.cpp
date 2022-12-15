@@ -192,7 +192,39 @@ Sound* aud_LoadSound(const char* fname)
 	return s;
 }
 
+Music* mus_gc;
+
 Music* aud_LoadMusic(const char* fname)
+{
+/*
+#ifdef MUSIC
+	char str[128];
+	sprintf(str, "%sogg/%s.ogg", SYS_DATAPATH, fname);
+	FILE* f = fopen(str, "rb");
+
+	if (f)
+	{
+		Music* m = (Music*)memalign(32, sizeof(Music));
+	
+		m->data = (MusicData*)memalign(32, sizeof(MusicData));
+		MusicData* md = (MusicData*)m->data;
+
+		fseek(f, 0, SEEK_END);
+		md->size = ftell(f);
+
+		md->data = (u8*)memalign(32, md->size);
+		fseek(f, 0, SEEK_SET);
+		fread(md->data, 1, md->size, f);
+
+		fclose(f);
+		return m;
+	}
+#endif
+*/
+	return nullptr;
+}
+
+Music* internal_aud_LoadMusic(const char* fname)
 {
 #ifdef MUSIC
 	char str[128];
@@ -368,9 +400,39 @@ static void* musicThread(void* arg)
 }
 #endif
 
-void aud_PlayMusic(Music* m, bool loop)
+void aud_PlayMusic(int a, bool loop)
 {
 	#ifdef MUSIC
+	Music *m;
+	const char* st_fname[] = {
+		"main01",
+		"boss",
+		"nazo",
+		"gameover",
+		"start",
+		"allclear",
+		"ending",
+	};
+	/*
+	bgmMusic == 0
+	bgmBoss == 1
+	bgmSecret == 2
+	bgmGameOver == 3
+	bgmStart == 4
+	bgmClear == 5
+	* 
+			"main01",
+			"boss",
+			"nazo",
+			"gameover",
+			"start",
+			"allclear"
+	*/
+	aud_FreeMusic(mus_gc);
+	mus_gc = internal_aud_LoadMusic(st_fname[a]);
+	
+	m = mus_gc;
+	
 	if (!m) return;
 	if (!m->data) return;
 

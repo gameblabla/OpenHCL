@@ -42,7 +42,7 @@ void resultsStart()
 	curtain = 0;
 
 	aud_StopMusic();
-	aud_PlayMusic(music[bgmClear], false);
+	aud_PlayMusic(5, false);
 }
 
 void resultsUpdate()

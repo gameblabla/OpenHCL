@@ -146,7 +146,7 @@ void creditsStart()
 	aud_StopMusic();
 	aud_FreeMusic(music[bgmMusic]);
 	music[bgmMusic] = aud_LoadMusic("ending");
-	aud_PlayMusic(music[bgmMusic], false);
+	aud_PlayMusic(6, false);
 }
 
 void creditsUpdate()
